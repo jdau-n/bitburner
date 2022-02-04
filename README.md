@@ -25,7 +25,7 @@ Hack the given server using the given number of threads. Usually called from oth
 
 `run root.js (target server)`
 
-If you have enough hack tools, gain root on the given server. If you unlock tools out of order this will get confused. Usually called from other scripts.
+If you have enough hack tools, gain root on the given server. Usually called from other scripts.
 
 ---
 
@@ -52,6 +52,18 @@ Purchase a server with option number and new server name. Options are from the l
 `run delete-server.js (server name)`
 
 Delete the given server, if you own it.
+
+---
+
+`run share.js (host server name)`
+
+Before using, copy x_shareclient.js to the host server. This will share the host server at max available threads. Sharing buffs rep gain with factions / companies? It looks like only one server will have an effect at once?
+
+---
+
+`run x_shareclient.js`
+
+Constantly runs share(). Intended to be run by share.js, but you can run it with a custom number of threads by running `run x_shareclient.js -t (number of threads)`
 
 ---
 

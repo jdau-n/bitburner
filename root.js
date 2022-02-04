@@ -1,14 +1,16 @@
 /** @param {NS} ns **/
-const hackProgList = ['FTPCrack.exe', 'BruteSSH.exe', 'relaySMTP.exe', 'SQLInject.exe', 'HTTPWorm.exe'];
-
 export async function main(ns) {
 	var hostname = ns.args[0];
 	var server_num_ports = ns.getServerNumPortsRequired(hostname)
-	var tools = 0;
-    for (let progName of hackProgList) {
-        if (ns.fileExists(progName, 'home')) { ++tools; }
-    }
-	if ( server_num_ports > tools ) {
+	var tool_level = 0;
+
+	if ( ns.fileExists('FTPCrack.exe', hostname) ) { tool_level++; }
+	if ( ns.fileExists('BruteSSH.exe', hostname) && tool_level == 1 ) { tool_level++; }
+	if ( ns.fileExists('relaySMTP.exe', hostname) && tool_level == 2 ) { tool_level++; }
+	if ( ns.fileExists('SQLInject.exe', hostname) && tool_level == 3 ) { tool_level++; }
+	if ( ns.fileExists('HTTPWorm.exe', hostname) && tool_level == 4 ) { tool_level++; }
+
+	if ( server_num_ports > tool_level ) {
 		ns.print("Cannot hack " + hostname + ": Not enough tools");
 		ns.exit();
 	}
