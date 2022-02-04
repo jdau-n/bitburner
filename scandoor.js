@@ -47,7 +47,7 @@ function get_host_path(ns, search_name, parent_name, network) {
 }
 
 export async function main(ns) {
-	network_map = await scanhost(ns, "home", "home", 1, {});
+	network_map = await scanhost(ns, "home", "home", 1);
 	var player_hacking_level = ns.getHackingLevel();
 	
 	for (var i = 0; i < network_list.length; i++) {

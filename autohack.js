@@ -35,7 +35,7 @@ async function scanhost(ns, hostname, parent_host, depth) {
 
 export async function main(ns) {
 	if (ns.args.length !== 1) {
-		ns.tprint("Expecting 1 param: script host");
+		ns.tprint("Usage: autohack.js <host server name>");
 		ns.exit();
 	}
 	
@@ -48,7 +48,7 @@ export async function main(ns) {
 	var scripthost = ns.args[0];
 	network_map = await scanhost(ns, "home", "home", 1);
 	var player_hacking_level = ns.getHackingLevel();
-	ns.tprint(network_list);
+	
 	for (var i = 0; i < network_list.length; i++) {
 		if (network_list[i] == "home") { continue; }
 		var server_required_hacking_level = ns.getServerRequiredHackingLevel(network_list[i]);
@@ -61,6 +61,10 @@ export async function main(ns) {
 	}
 
 	var sram = ns.getScriptRam("threadhack.js", scripthost);
+	if (sram == 0) {
+		ns.tprint("Please scp threadhack.js to host server first")
+		ns.exit();
+	}
 	var smr = ns.getServerMaxRam(scripthost);
 	var sur = ns.getServerUsedRam(scripthost);
 

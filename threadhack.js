@@ -5,7 +5,7 @@ function logNum(ns, num) {
 
 export async function main(ns) {
 	if (ns.args.length !== 2) {
-		ns.tprint("Expecting 2 params: server name, threads");
+		ns.tprint("Usage: threadhack.js <target> <threads>");
 		ns.exit();
 	}
 

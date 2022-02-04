@@ -8,6 +8,6 @@ export async function main(ns) {
 		}
 		
 	} else {
-		ns.tprint("delete-server.js <server name>");
+		ns.tprint("Usage: delete-server.js <server name>");
 	}
 }
